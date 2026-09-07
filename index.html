@@ -27,6 +27,9 @@ header{background:var(--brand-d);color:var(--on-brand);padding:10px 12px 11px;po
 .brand{display:flex;align-items:baseline;gap:8px;margin:0 4px 9px}
 .brand b{font-size:15px;letter-spacing:.16em;font-weight:700}
 .brand span{font-size:11px;color:#6B3D18}
+.brand #gear{margin-left:auto;background:rgba(58,24,0,.15);border:none;color:#3F210B;
+font-family:inherit;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:14px;cursor:pointer}
+.brand #gear:hover{background:rgba(255,255,255,.4)}
 .tabs{display:flex;gap:2px;background:rgba(58,24,0,.15);border-radius:11px;padding:3px}
 .tabs button{flex:1;background:none;border:none;border-radius:8px;color:#48260C;
 font-family:inherit;font-size:13.5px;padding:8px 0;cursor:pointer;font-weight:700;
@@ -78,7 +81,7 @@ font-size:16px;font-family:inherit;background:var(--wash)}
 .hit .mt{font-size:11px;color:var(--mute);margin-top:2px}
 .hit .r{text-align:right;white-space:nowrap}
 .hit .pv{font-size:16px;font-weight:700}
-.hit .lp{font-size:11px;color:var(--mute);text-decoration:line-through}
+.hit .lp{font-size:11px;color:var(--mute);margin-top:1px}
 .hit mark{background:#FFE7A8;padding:0 1px;border-radius:2px}
 .add{border:1px solid #E9A472;color:var(--brand-tx);background:#fff;border-radius:6px;
 padding:6px 11px;font-size:12px;font-family:inherit;font-weight:700;cursor:pointer;margin-top:6px}
@@ -138,6 +141,28 @@ font-size:14px;padding:9px 16px;border-radius:7px;cursor:pointer;font-weight:500
 .vnav .pn{font-size:13px;color:var(--mute);min-width:74px}
 .vfail{padding:34px 18px;color:var(--mute);font-size:13px;line-height:1.9}
 .vfail a{color:var(--brand-tx);font-weight:700}
+.adbody{padding:14px 14px 24px;text-align:left;background:var(--paper)}
+.adsec{font-size:11px;letter-spacing:.1em;font-weight:700;color:var(--mute);margin:22px 0 8px}
+.adsec:first-child{margin-top:2px}
+.adsec span{font-weight:400;letter-spacing:0}
+.adrow{display:flex;align-items:center;gap:9px;padding:6px 0}
+.adrow label{flex:1;font-size:13.5px}
+.adrow input{width:108px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;
+font-size:15px;font-family:inherit;text-align:right}
+.adrow .u{width:22px;font-size:12px;color:var(--mute)}
+.adcalc{margin-top:10px;background:var(--brand-w);border-radius:7px;padding:11px 13px;font-size:13px}
+.adcalc b{font-size:17px}
+.adhd{display:grid;grid-template-columns:1fr 54px 74px 82px 44px;gap:5px;font-size:10.5px;
+color:var(--mute);padding:0 2px 4px}
+.adhd span:not(:first-child){text-align:right}
+.adjob{display:grid;grid-template-columns:1fr 54px 74px 82px 44px;gap:5px;margin-bottom:5px}
+.adjob input{padding:7px 8px;border:1px solid var(--line);border-radius:5px;font-size:13.5px;
+font-family:inherit;min-width:0}
+.adjob input[type=number]{text-align:right}
+.adx{border:1px solid var(--line);background:#fff;color:var(--ng);font-family:inherit;
+font-size:11px;border-radius:5px;cursor:pointer;padding:0}
+.adsave{background:var(--brand);color:var(--on-brand);border:none;padding:13px 34px;
+border-radius:8px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
 .note{font-size:11px;color:var(--mute);margin-top:10px;line-height:1.7}
 input.t{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;font-size:16px;font-family:inherit}
 .fld{margin-bottom:12px}.fld label{display:block;font-size:12px;color:var(--ink2);margin-bottom:4px;font-weight:500}
@@ -147,7 +172,7 @@ input.t{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:
 <body>
 <div id="app">
 <header>
-  <div class="brand"><b>EIMEI</b><span>現場見積</span></div>
+  <div class="brand"><b>EIMEI</b><span>現場見積</span><button id="gear" aria-label="管理">設定</button></div>
   <div class="tabs" id="tabs"></div>
 </header>
 <main id="main"></main>
@@ -155,10 +180,38 @@ input.t{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:
 </div>
 <script>
 const CATALOG=[{"code": "YES400DR", "price": 25500, "name": "音姫（トイレ用擬音装置）", "page": 70, "maker": "TOTO", "grp": "その他設備"}, {"code": "HR720", "price": 5900, "name": "取付固定金具", "page": 68, "maker": "TOTO", "grp": "その他部材"}, {"code": "T90SW75", "price": 5400, "name": "", "page": 84, "maker": "TOTO", "grp": "その他部材"}, {"code": "T90SW100", "price": 5400, "name": "", "page": 84, "maker": "TOTO", "grp": "その他部材"}, {"code": "CS902BK", "price": 767000, "name": "", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CS902BL", "price": 756000, "name": "スティックリモコン（ブラック）壁床共通床200mm露出NX", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CS902B", "price": 726000, "name": "", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9820HE", "price": 541000, "name": "a155以上式スティックリモコン200mmLS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9820E", "price": 528000, "name": "200200mmLS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9810HE", "price": 526000, "name": "単位：mm） （単位：mm） ブラック （ブラック） LS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9810E", "price": 513000, "name": "LS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9820HW", "price": 502000, "name": "ター（ホワイト）スティックリモコン200mmLS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9820P", "price": 500000, "name": "", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9970", "price": 493000, "name": "（流床200mm", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9820H", "price": 491000, "name": "807000200mmLS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9820W", "price": 489000, "name": "B500D（ホワイト）200mmLS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9810P", "price": 485000, "name": "", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930HFW", "price": 484000, "name": "ル対応120／200mm露出", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930PW", "price": 482000, "name": "", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9720HW", "price": 481000, "name": "抜床床200mm隠ぺいAS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9810H", "price": 476000, "name": "250b50以上リモコン200mmLS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930MW", "price": 471000, "name": "", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930FW", "price": 471000, "name": "ィックリモコン（シルバー）リモデル対応120／200mm露出", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9720H", "price": 470000, "name": "W÷2ー405W÷2ー300ヒ200mm隠ぺいAS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9720M", "price": 468000, "name": "【床給水範囲】床305〜AS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930H", "price": 462000, "name": "便200mm隠ぺい", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930M", "price": 460000, "name": "", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930F", "price": 460000, "name": "（流リモコンリモデル対応120／200mm露出", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9720", "price": 457000, "name": "bb50以上200mm隠ぺいAS2", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "TCF9510R", "price": 452000, "name": "RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9930", "price": 449000, "name": "200mm隠ぺい", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710HFW", "price": 444000, "name": "", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710HW", "price": 433000, "name": "併 AS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710FW", "price": 431000, "name": "2バ週ー）200mmAS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9530HMW", "price": 424000, "name": "方 スティックリモコン RS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9530HFW", "price": 424000, "name": "対応露出RS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710H", "price": 422000, "name": "ー AS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9530PW", "price": 422000, "name": "RS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "TCF9530", "price": 420000, "name": "RS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710M", "price": 420000, "name": "", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710C", "price": 420000, "name": "RS3200mm隠ぺいAS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9530P", "price": 411000, "name": "RS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9710", "price": 409000, "name": "AS1", "page": 78, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9520HMWR", "price": 403000, "name": "", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9520HFWR", "price": 403000, "name": "200mm120／RS2", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9520PWR", "price": 401000, "name": "", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "TCF9520R", "price": 400000, "name": "200mm隠ぺいRS2", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CS921B", "price": 400000, "name": "200mm隠ぺいRS2", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9530C", "price": 400000, "name": "RS2一般200mm隠ぺいRS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9520HWR", "price": 392000, "name": "抜併200mm隠ぺいRS2", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9520PR", "price": 390000, "name": "", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9530", "price": 389000, "name": "RS3", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9520R", "price": 368000, "name": "200mm隠ぺいRS2", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510HMWR", "price": 362000, "name": "注2週 リモデル RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510HFWR", "price": 362000, "name": "RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510PWR", "price": 360000, "name": "壁RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510HWR", "price": 351000, "name": "用RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510MWR", "price": 349000, "name": "40mm露出RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510FWR", "price": 349000, "name": "注2週 RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "CES9510FR", "price": 338000, "name": "RS1", "page": 80, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "TCA337", "price": 12900, "name": "", "page": 82, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "TCA338", "price": 12200, "name": "", "page": 82, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "TCA393", "price": 7200, "name": "", "page": 70, "maker": "TOTO", "grp": "便器・ウォシュレット"}, {"code": "UGW104", "price": 35700, "name": "ウォール収納キャビネット（露出）", "page": 58, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGW301S", "price": 35000, "name": "", "page": 64, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGW301YS", "price": 35000, "name": "コーナー収納キャビネット", "page": 64, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGW101S", "price": 34550, "name": "背面ウォール収納キャビネット", "page": 52, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGYM300F", "price": 34000, "name": "化粧鏡", "page": 52, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGM1200", "price": 31400, "name": "", "page": 64, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGW180S", "price": 24650, "name": "", "page": 64, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGW180YS", "price": 24650, "name": "", "page": 64, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGA524", "price": 12850, "name": "", "page": 68, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGA519B", "price": 6500, "name": "バックパネル", "page": 58, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGA519A", "price": 6500, "name": "", "page": 60, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGA467", "price": 6050, "name": "", "page": 58, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "UGA515A", "price": 3100, "name": "", "page": 64, "maker": "TOTO", "grp": "収納・鏡・カウンター"}, {"code": "TLDP2207JA", "price": 35900, "name": "排水金具", "page": 48, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "TLDP2201JA", "price": 30100, "name": "排水金具", "page": 68, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "TLDP2105JA", "price": 27100, "name": "壁排水金具（Pトラップ）", "page": 70, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "YTB600SR", "price": 26300, "name": "浴室排水ユニット", "page": 48, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "T7W85", "price": 20700, "name": "排水金具", "page": 44, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "HP967", "price": 11300, "name": "排水エルボ／", "page": 58, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "UGX061", "price": 10800, "name": "準ホースの場合 オプション給水ホース 排水ジョイントカバー／", "page": 58, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "HP82S", "price": 4100, "name": "排水ジョイント／", "page": 58, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "HP985W", "price": 2600, "name": "", "page": 84, "maker": "TOTO", "grp": "排水金具・部材"}, {"code": "TLP01S01J", "price": 240500, "name": "給水栓", "page": 44, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLP03301JA", "price": 216000, "name": "給水栓", "page": 46, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLP02309J", "price": 200000, "name": "給水栓", "page": 50, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLE26SM1A", "price": 117400, "name": "給水栓", "page": 70, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBV02105J", "price": 117000, "name": "", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBW01004J", "price": 111000, "name": "シャワー（2モード）（コンフォートウエーブ／ウォームピラー）", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLG10305J", "price": 104000, "name": "水栓金具シングル混合水栓", "page": 68, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLG10303J", "price": 90400, "name": "給水栓", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLG10301J", "price": 79600, "name": "給水栓", "page": 68, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBV02402J", "price": 78600, "name": "", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TLG04302JA", "price": 65300, "name": "水栓金具シングル混合水栓", "page": 68, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBG02001J", "price": 53400, "name": "バススパウト", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBN01001J", "price": 45500, "name": "", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBW01022J", "price": 37900, "name": "（コンフォートウエーブ／アクティブウエーブ／ウォームピラー）", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBW07019J", "price": 25900, "name": "スライドバー", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TBW08009J", "price": 16800, "name": "シャワーエルボ", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "TL4CU", "price": 7550, "name": "止水栓", "page": 48, "maker": "TOTO", "grp": "水栓金具"}, {"code": "LS902", "price": 120000, "name": "ベッセル式洗面器", "page": 44, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS903", "price": 117000, "name": "ベッセル式洗面器", "page": 46, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS915", "price": 111000, "name": "ベッセル式洗面器", "page": 50, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "MB60", "price": 96700, "name": "マーブライトカウンター", "page": 68, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "MB40NX32", "price": 91900, "name": "マーブライトカウンター", "page": 68, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS707", "price": 71800, "name": "ベッセル式洗面器", "page": 68, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS716", "price": 52000, "name": "ベッセル式洗面器", "page": 48, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS703", "price": 47100, "name": "洗面器", "page": 70, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS722C", "price": 44500, "name": "洗面器", "page": 68, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "LS721C", "price": 42100, "name": "ベッセル式洗面器", "page": 68, "maker": "TOTO", "grp": "洗面器・洗面ボウル"}, {"code": "PFAC1680EC", "price": 145250, "name": "Lサイズ（カウンターセット） ULU", "page": 50, "maker": "TOTO", "grp": "浴槽・浴室"}, {"code": "PFAG1680AG", "price": 145250, "name": "ULU", "page": 52, "maker": "TOTO", "grp": "浴槽・浴室"}, {"code": "PEAF1680AK", "price": 125100, "name": "ULU", "page": 56, "maker": "TOTO", "grp": "浴槽・浴室"}, {"code": "KFAD1680EK", "price": 121550, "name": "ULU", "page": 50, "maker": "TOTO", "grp": "浴槽・浴室"}, {"code": "AAAN1680SW", "price": 100500, "name": "ULU", "page": 58, "maker": "TOTO", "grp": "浴槽・浴室"}, {"code": "GYHR600W3", "price": 42800, "name": "", "page": 58, "maker": "TOTO", "grp": "浴槽・浴室"}, {"code": "YH63SD", "price": 78800, "name": "スタンド式紙巻器", "page": 44, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "EWC703", "price": 64600, "name": "ベッセルタイプ ハイバックタイプ アームレスト", "page": 60, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YKB104", "price": 49100, "name": "チャームボックス", "page": 70, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "AGF801", "price": 44100, "name": "ハイドロセラ・トイレフロアJ", "page": 50, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "AGF803", "price": 44100, "name": "ハイドロセラ・トイレフロアJ", "page": 52, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "AGF805", "price": 44100, "name": "ハイドロセラ・トイレフロアJ", "page": 60, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YH63KM", "price": 41800, "name": "棚付二連紙巻器", "page": 54, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YH700AD", "price": 41600, "name": "", "page": 70, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YHR800W", "price": 34700, "name": "インテリア・バー（コンテンポラリタイプ）", "page": 70, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "AGF850", "price": 30800, "name": "フローリングセット（3枚）", "page": 50, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "GYTT902", "price": 26600, "name": "タオルリング U", "page": 50, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YT801", "price": 16300, "name": "タオルリング", "page": 56, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YH902", "price": 13700, "name": "紙巻器", "page": 50, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YH903", "price": 13700, "name": "紙巻器", "page": 52, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YHBS603FBR", "price": 12850, "name": "", "page": 64, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YTT902", "price": 12500, "name": "タオルリング", "page": 54, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "AGF851", "price": 11400, "name": "追加用フローリング", "page": 50, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "YH409R", "price": 8500, "name": "紙巻器", "page": 46, "maker": "TOTO", "grp": "紙巻器・アクセサリ"}, {"code": "TN115", "price": 25000, "name": "排水カバー", "page": 70, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "TN111L552", "price": 17400, "name": "B", "page": 76, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "TN147", "price": 15600, "name": "操作部（ワンプッシュ用）", "page": 50, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "TN111L86", "price": 15000, "name": "A", "page": 76, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "TN111L45", "price": 14200, "name": "450オプション給水ホース450", "page": 72, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "HM912", "price": 13700, "name": "オプション給水ホース", "page": 56, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "HM913", "price": 13700, "name": "オプション給水ホース", "page": 58, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "TLC4A1", "price": 12900, "name": "止水栓", "page": 46, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "HM911", "price": 5400, "name": "", "page": 84, "maker": "TOTO", "grp": "給水・止水栓"}, {"code": "HM911P", "price": 5400, "name": "", "page": 84, "maker": "TOTO", "grp": "給水・止水栓"}];
-const MENU=[{"code": "T-01", "cat": "トイレ", "name": "つまり除去（軽度）", "hrs": 0.8, "mat": 300, "price": 14000}, {"code": "T-02", "cat": "トイレ", "name": "つまり除去（中度）", "hrs": 1.5, "mat": 800, "price": 20000}, {"code": "T-03", "cat": "トイレ", "name": "つまり除去（重度・便器脱着）", "hrs": 3.0, "mat": 3000, "price": 40000}, {"code": "T-04", "cat": "トイレ", "name": "タンク内部品交換", "hrs": 1.0, "mat": 0, "price": 15000}, {"code": "T-05", "cat": "トイレ", "name": "温水洗浄便座 交換", "hrs": 1.2, "mat": 500, "price": 17000}, {"code": "T-06", "cat": "トイレ", "name": "トイレ本体交換（標準）", "hrs": 3.0, "mat": 3000, "price": 39000}, {"code": "T-07", "cat": "トイレ", "name": "トイレ本体交換（リモデル）", "hrs": 4.5, "mat": 8000, "price": 58000}, {"code": "T-08", "cat": "トイレ", "name": "便器脱着（往復）", "hrs": 2.0, "mat": 2000, "price": 26000}, {"code": "K-01", "cat": "キッチン", "name": "水栓交換（ワンホール）", "hrs": 1.2, "mat": 500, "price": 17000}, {"code": "K-02", "cat": "キッチン", "name": "排水つまり除去", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "K-03", "cat": "キッチン", "name": "排水トラップ交換", "hrs": 1.2, "mat": 1500, "price": 18000}, {"code": "S-01", "cat": "洗面", "name": "水栓交換", "hrs": 1.2, "mat": 500, "price": 17000}, {"code": "S-02", "cat": "洗面", "name": "排水つまり除去", "hrs": 0.8, "mat": 300, "price": 14000}, {"code": "B-01", "cat": "浴室", "name": "サーモ水栓交換", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "B-02", "cat": "浴室", "name": "排水つまり除去", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "W-01", "cat": "給排水", "name": "パッキン交換", "hrs": 0.5, "mat": 200, "price": 13000}, {"code": "W-02", "cat": "給排水", "name": "止水栓交換", "hrs": 0.7, "mat": 1500, "price": 14000}, {"code": "W-03", "cat": "給排水", "name": "給水管漏水修理", "hrs": 1.5, "mat": 2000, "price": 21000}, {"code": "W-04", "cat": "給排水", "name": "漏水調査", "hrs": 1.5, "mat": 0, "price": 20000}, {"code": "W-05", "cat": "給排水", "name": "排水管高圧洗浄", "hrs": 2.0, "mat": 1000, "price": 28000}, {"code": "O-01", "cat": "屋外", "name": "散水栓・立水栓 交換", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "O-02", "cat": "屋外", "name": "立水栓 新設", "hrs": 2.5, "mat": 5000, "price": 33000}, {"code": "G-01", "cat": "給湯器", "name": "給湯器交換（本体別）", "hrs": 3.0, "mat": 4000, "price": 39000}, {"code": "G-02", "cat": "給湯器", "name": "リモコン交換", "hrs": 0.8, "mat": 500, "price": 14000}, {"code": "L-01", "cat": "その他", "name": "防水パン・洗濯水栓交換", "hrs": 1.5, "mat": 2000, "price": 21000}];
-const CONFIG = { targetIncome:8000000, fixedCost:3000000, workDays:250, hoursPerDay:8,
+const MENU_SEED=[{"code": "T-01", "cat": "トイレ", "name": "つまり除去（軽度）", "hrs": 0.8, "mat": 300, "price": 14000}, {"code": "T-02", "cat": "トイレ", "name": "つまり除去（中度）", "hrs": 1.5, "mat": 800, "price": 20000}, {"code": "T-03", "cat": "トイレ", "name": "つまり除去（重度・便器脱着）", "hrs": 3.0, "mat": 3000, "price": 40000}, {"code": "T-04", "cat": "トイレ", "name": "タンク内部品交換", "hrs": 1.0, "mat": 0, "price": 15000}, {"code": "T-05", "cat": "トイレ", "name": "温水洗浄便座 交換", "hrs": 1.2, "mat": 500, "price": 17000}, {"code": "T-06", "cat": "トイレ", "name": "トイレ本体交換（標準）", "hrs": 3.0, "mat": 3000, "price": 39000}, {"code": "T-07", "cat": "トイレ", "name": "トイレ本体交換（リモデル）", "hrs": 4.5, "mat": 8000, "price": 58000}, {"code": "T-08", "cat": "トイレ", "name": "便器脱着（往復）", "hrs": 2.0, "mat": 2000, "price": 26000}, {"code": "K-01", "cat": "キッチン", "name": "水栓交換（ワンホール）", "hrs": 1.2, "mat": 500, "price": 17000}, {"code": "K-02", "cat": "キッチン", "name": "排水つまり除去", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "K-03", "cat": "キッチン", "name": "排水トラップ交換", "hrs": 1.2, "mat": 1500, "price": 18000}, {"code": "S-01", "cat": "洗面", "name": "水栓交換", "hrs": 1.2, "mat": 500, "price": 17000}, {"code": "S-02", "cat": "洗面", "name": "排水つまり除去", "hrs": 0.8, "mat": 300, "price": 14000}, {"code": "B-01", "cat": "浴室", "name": "サーモ水栓交換", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "B-02", "cat": "浴室", "name": "排水つまり除去", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "W-01", "cat": "給排水", "name": "パッキン交換", "hrs": 0.5, "mat": 200, "price": 13000}, {"code": "W-02", "cat": "給排水", "name": "止水栓交換", "hrs": 0.7, "mat": 1500, "price": 14000}, {"code": "W-03", "cat": "給排水", "name": "給水管漏水修理", "hrs": 1.5, "mat": 2000, "price": 21000}, {"code": "W-04", "cat": "給排水", "name": "漏水調査", "hrs": 1.5, "mat": 0, "price": 20000}, {"code": "W-05", "cat": "給排水", "name": "排水管高圧洗浄", "hrs": 2.0, "mat": 1000, "price": 28000}, {"code": "O-01", "cat": "屋外", "name": "散水栓・立水栓 交換", "hrs": 1.0, "mat": 500, "price": 15000}, {"code": "O-02", "cat": "屋外", "name": "立水栓 新設", "hrs": 2.5, "mat": 5000, "price": 33000}, {"code": "G-01", "cat": "給湯器", "name": "給湯器交換（本体別）", "hrs": 3.0, "mat": 4000, "price": 39000}, {"code": "G-02", "cat": "給湯器", "name": "リモコン交換", "hrs": 0.8, "mat": 500, "price": 14000}, {"code": "L-01", "cat": "その他", "name": "防水パン・洗濯水栓交換", "hrs": 1.5, "mat": 2000, "price": 21000}];
+const CONFIG_SEED = { targetIncome:8000000, fixedCost:3000000, workDays:250, hoursPerDay:8,
   siteRatio:0.65, buyRate:0.60, sellRate:0.70, travelHours:0.7, taxRate:0.10 };
-const NEED = (CONFIG.targetIncome+CONFIG.fixedCost)/(CONFIG.workDays*CONFIG.hoursPerDay*CONFIG.siteRatio);
+const KEY = 'eimei.v1';
+let MEM = null;
+function load(){
+  try { const s = localStorage.getItem(KEY); if (s) return JSON.parse(s); }
+  catch(e){}
+  return MEM;
+}
+function save(){
+  const data = { config: CONFIG, menu: MENU };
+  MEM = data;
+  try { localStorage.setItem(KEY, JSON.stringify(data)); return true; }
+  catch(e){ return false; }
+}
+function resetAll(){
+  CONFIG = {...CONFIG_SEED};
+  MENU = MENU_SEED.map(m => ({...m}));
+  MEM = null;
+  try { localStorage.removeItem(KEY); } catch(e){}
+}
+let CONFIG, MENU;
+(function(){
+  const s = load();
+  CONFIG = {...CONFIG_SEED, ...(s && s.config || {})};
+  MENU = (s && s.menu) ? s.menu.map(m => ({...m})) : MENU_SEED.map(m => ({...m}));
+})();
+function need(){
+  const d = CONFIG.workDays*CONFIG.hoursPerDay*CONFIG.siteRatio;
+  return d ? (CONFIG.targetIncome+CONFIG.fixedCost)/d : 0;
+}
 const yen = n => '¥' + Math.round(n).toLocaleString('ja-JP');
 const el = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
@@ -200,7 +253,7 @@ const hl = (t,q) => { if(!q) return esc(t);
 const inCart = c => S.goods.some(g => g.code === c);
 
 function calc(){
-  const jobs = S.jobs.map(c => MENU.find(m => m.code===c));
+  const jobs = S.jobs.map(c => MENU.find(m => m.code===c)).filter(Boolean);
   const work = jobs.reduce((a,j)=>a+j.price,0);
   const hrs  = jobs.reduce((a,j)=>a+j.hrs,0);
   const matCost = jobs.reduce((a,j)=>a+j.mat,0);
@@ -219,6 +272,7 @@ function chrome(){
     return `<button data-i="${i}" aria-selected="${S.tab===i}">${t}${n?`<span class="badge">${n}</span>`:''}</button>`;
   }).join('');
   el('tabs').onclick = e => { const b=e.target.closest('button'); if(!b) return; S.tab=+b.dataset.i; render(); };
+  el('gear').onclick = openAdmin;
 }
 function bar(){
   const c = calc(), p = [];
@@ -293,10 +347,10 @@ function listView(){
             ${inCart(r.code)?'見積に追加済み':'見積に追加'}</button>
           <button class="pgbtn" data-v="${r.page}">カタログ p.${r.page}</button>
         </div>
-        <div class="r"><div class="pv num">${yen(r.price*CONFIG.sellRate)}</div>
-          <div class="lp num">定価 ${yen(r.price)}</div></div>
+        <div class="r"><div class="pv num">${yen(r.price)}</div>
+          <div class="lp">メーカー定価</div></div>
       </div>`).join('') || `<p class="empty">該当する品番がありません。</p>`}
-    <p class="note">表示価格は定価に販売掛率 ${Math.round(CONFIG.sellRate*100)}% を掛けた金額です。</p>`;
+    <p class="note">一覧はカタログのメーカー定価です。お客様への提示価格（販売掛率 ${Math.round(CONFIG.sellRate*100)}% 適用後）は見積タブで計算されます。</p>`;
   const q = el('q');
   q.oninput = e => { S.q=e.target.value; listView();
     const n=el('q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); };
@@ -362,7 +416,7 @@ V[2] = () => {
 };
 
 V[3] = () => {
-  const c = calc(), ok = c.tied ? c.perHour>=NEED : false;
+  const c = calc(), N = need(), ok = c.tied ? c.perHour>=N : false;
   el('main').innerHTML = `
     <h2>内部チェック</h2><p class="lead">お客様には見せない画面です。</p>
     <div class="intern">
@@ -376,8 +430,8 @@ V[3] = () => {
       <div class="k"><span>時間あたり粗利</span><b class="num big">${c.tied?yen(c.perHour)+'/h':'—'}</b></div>
       <div class="verdict ${ok?'y':'n'}">${!c.tied
         ? '工賃が選ばれていないため判定できません。工賃タブで作業を追加してください。'
-        : ok ? `基準 ${yen(NEED)}/h に対して ${(c.perHour/NEED).toFixed(1)}倍。受注して問題ありません。`
-             : `基準 ${yen(NEED)}/h を ${yen(NEED-c.perHour)}/h 下回ります。工賃か商品構成の見直しを。`}</div>
+        : ok ? `基準 ${yen(N)}/h に対して ${(c.perHour/N).toFixed(1)}倍。受注して問題ありません。`
+             : `基準 ${yen(N)}/h を ${yen(N-c.perHour)}/h 下回ります。工賃か商品構成の見直しを。`}</div>
     </div>
     <button class="ghost" id="rs">新しい見積を始める</button>`;
   el('rs').onclick = () => { Object.assign(S,{tab:0,maker:null,grp:null,q:'',goods:[],jobs:[],cust:'',addr:''}); render(); };
@@ -424,7 +478,116 @@ function paintViewer(){
   el('vb').scrollTop = 0;
 }
 
-function render(){ closeCatalog(); chrome(); V[S.tab](); }
+const FIELDS = [
+  ['targetIncome','目標年間所得','円',0],
+  ['fixedCost','年間固定費','円',0],
+  ['workDays','年間稼働日数','日',0],
+  ['hoursPerDay','1日の実働時間','h',1],
+  ['siteRatio','現場拘束の割合','%',0,100],
+  ['buyRate','仕入掛率','%',0,100],
+  ['sellRate','販売掛率','%',0,100],
+  ['travelHours','往復移動の平均','h',1],
+  ['taxRate','消費税率','%',0,100]
+];
+let ADMIN = false;
+function openAdmin(){ ADMIN = true; paintAdmin(); }
+function closeAdmin(){ ADMIN = false; const a = el('ad'); if (a) a.remove(); }
+
+function paintAdmin(){
+  let a = el('ad');
+  if (!a){ a = document.createElement('div'); a.id='ad'; a.className='vwrap';
+           document.getElementById('app').appendChild(a); }
+  a.innerHTML = `
+    <div class="vbar">
+      <div class="vt">管理<span>工賃メニューと掛率の設定</span></div>
+      <button id="ax">閉じる</button>
+    </div>
+    <div class="vbody adbody">
+      <div class="adsec">設定</div>
+      ${FIELDS.map(f => {
+        const pct = f[3]===0 && f[4]===100;
+        const v = pct ? Math.round(CONFIG[f[0]]*100) : CONFIG[f[0]];
+        return `<div class="adrow"><label for="c_${f[0]}">${f[1]}</label>
+          <input type="number" id="c_${f[0]}" value="${v}" step="${f[3]?0.1:1}" inputmode="decimal">
+          <span class="u">${f[2]}</span></div>`;
+      }).join('')}
+      <div class="adcalc">確保すべき時間あたり粗利　<b class="num">${yen(need())}/h</b></div>
+
+      <div class="adsec">工賃メニュー　<span>${MENU.length}件</span></div>
+      <div class="adhd"><span>工事名</span><span>工数h</span><span>部材原価</span><span>売価</span><span></span></div>
+      ${MENU.map((m,i) => `
+        <div class="adjob">
+          <input type="text" id="j_n_${i}" value="${esc(m.name)}" aria-label="工事名">
+          <input type="number" id="j_h_${i}" value="${m.hrs}" step="0.1" inputmode="decimal" aria-label="工数">
+          <input type="number" id="j_m_${i}" value="${m.mat}" step="100" inputmode="numeric" aria-label="部材原価">
+          <input type="number" id="j_p_${i}" value="${m.price}" step="1000" inputmode="numeric" aria-label="売価">
+          <button class="adx" data-del="${i}" aria-label="${esc(m.name)}を削除">削除</button>
+        </div>`).join('')}
+      <button class="ghost" id="aadd">工賃を1件追加する</button>
+
+      <div class="adsec">データ</div>
+      <button class="ghost" id="aexp">設定を書き出す（JSON）</button>
+      <button class="ghost" id="arst">すべて初期値に戻す</button>
+      <p class="note" id="anote">変更はこの端末のブラウザに保存されます。別の端末には反映されません。
+      機種変更や共有が必要になったら、書き出したJSONを渡すか、Supabaseに移してください。</p>
+    </div>
+    <div class="vnav"><button id="asave" class="adsave">保存する</button></div>`;
+
+  el('ax').onclick = () => { closeAdmin(); render(); };
+  el('aadd').onclick = () => { collect();
+    MENU.push({code:'X-'+Date.now().toString(36).slice(-4).toUpperCase(), cat:'その他',
+               name:'新しい工事', hrs:1, mat:0, price:15000}); paintAdmin(); };
+  el('aexp').onclick = () => {
+    collect();
+    const blob = new Blob([JSON.stringify({config:CONFIG, menu:MENU}, null, 2)], {type:'application/json'});
+    const u = URL.createObjectURL(blob); const a2 = document.createElement('a');
+    a2.href = u; a2.download = 'eimei-settings.json'; a2.click(); URL.revokeObjectURL(u);
+  };
+  el('arst').onclick = () => {
+    if (confirm('工賃メニューと設定を初期値に戻します。よろしいですか。')){
+      resetAll(); S.jobs = []; paintAdmin(); }
+  };
+  a.onclick = e => { const d = e.target.closest('.adx'); if (!d) return;
+    collect(); const i = +d.dataset.del;
+    const gone = MENU[i].code; MENU.splice(i,1);
+    S.jobs = S.jobs.filter(c => c !== gone); paintAdmin(); };
+  el('asave').onclick = () => {
+    collect();
+    const ok = save();
+    el('anote').textContent = ok
+      ? '保存しました。'
+      : 'この環境ではブラウザに保存できないため、変更はこの画面を閉じるまで有効です。';
+    el('anote').style.color = ok ? 'var(--ok)' : 'var(--ng)';
+    paintNeed();
+  };
+}
+
+function paintNeed(){
+  const n = el('ad') && el('ad').querySelector('.adcalc b');
+  if (n) n.textContent = yen(need()) + '/h';
+}
+
+function collect(){
+  FIELDS.forEach(f => {
+    const inp = el('c_'+f[0]); if (!inp) return;
+    let v = parseFloat(inp.value);
+    if (isNaN(v)) return;
+    if (f[3]===0 && f[4]===100) v = v/100;
+    CONFIG[f[0]] = v;
+  });
+  MENU.forEach((m,i) => {
+    const n = el('j_n_'+i), hh = el('j_h_'+i), mm = el('j_m_'+i), pp = el('j_p_'+i);
+    if (!n) return;
+    m.name = n.value.trim() || m.name;
+    const num = (inp, cur) => {
+      const v = parseFloat(inp.value);
+      return isNaN(v) ? cur : Math.max(0, v);
+    };
+    m.hrs = num(hh, m.hrs); m.mat = num(mm, m.mat); m.price = num(pp, m.price);
+  });
+}
+
+function render(){ closeCatalog(); closeAdmin(); chrome(); V[S.tab](); }
 render();
 </script>
 </body>
